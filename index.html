@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoinbase - Buy and Sell Bitcoin, Ethereum, and more with trust</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/jpeg" href="zoinbase.jpg">
+  <link rel="apple-touch-icon" href="zoinbase.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0a0b0d;
+      background: #fff;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ========== PROMO BANNER ========== */
+    .promo-banner {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 10px 40px;
+      text-align: center;
+    }
+    .promo-banner a {
+      font-size: 13px;
+      color: #0052ff;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    /* ========== HEADER / NAVBAR ========== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 64px;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: #0a0b0d;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #0052ff; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .nav-icon:hover { background: #f0f0f0; }
+    .nav-icon svg { width: 20px; height: 20px; fill: #0a0b0d; }
+    .btn-signin {
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #0a0b0d;
+      border: 1px solid #d1d5db;
+      transition: background 0.2s;
+    }
+    .btn-signin:hover { background: #f5f5f5; }
+    .btn-signup-nav {
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: #0052ff;
+      transition: background 0.2s;
+    }
+    .btn-signup-nav:hover { background: #003ecb; }
+
+    /* ========== HERO SECTION ========== */
+    .hero {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 60px 40px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      min-height: 620px;
+    }
+    .hero-phone-side {
+      flex: 1;
+      max-width: 600px;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-phone-wrapper {
+      width: 480px;
+      height: 560px;
+      background: linear-gradient(160deg, #0a1628 0%, #0d2151 50%, #0a1628 100%);
+      border-radius: 32px;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-phone-mockup {
+      width: 320px;
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+      position: relative;
+    }
+    .phone-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .phone-top-bar .hamburger { font-size: 18px; color: #666; }
+    .phone-search {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: #999;
+      flex: 1;
+      margin: 0 10px;
+    }
+    .phone-search svg { width: 14px; height: 14px; fill: #999; }
+    .phone-top-icons {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .phone-top-icons .z-mini {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .phone-top-icons .z-mini img { width: 100%; height: 100%; object-fit: cover; }
+    .phone-top-icons span { font-size: 14px; color: #666; }
+
+    .phone-portfolio {
+      padding: 20px 16px 12px;
+    }
+    .phone-portfolio .total {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0a0b0d;
+    }
+    .phone-portfolio .change {
+      font-size: 13px;
+      color: #05b169;
+      margin-top: 2px;
+    }
+    .phone-portfolio .change .arrow-up { font-size: 11px; }
+    .phone-chart-area {
+      padding: 0 16px;
+      height: 90px;
+      position: relative;
+    }
+    .phone-chart-area svg { width: 100%; height: 100%; }
+    .chart-line-main { stroke: #0052ff; stroke-width: 1.5; fill: none; }
+    .chart-area-main { fill: url(#heroChartGrad); }
+    .chart-dot {
+      fill: #0052ff;
+      stroke: #fff;
+      stroke-width: 2;
+    }
+    .phone-time-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 8px 16px;
+    }
+    .phone-time-tabs span {
+      font-size: 12px;
+      font-weight: 500;
+      color: #999;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .phone-time-tabs span.active {
+      color: #0052ff;
+      background: #eff4ff;
+    }
+    .phone-balance-rows {
+      padding: 0 16px 16px;
+    }
+    .phone-bal-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .phone-bal-row:last-child { border: none; }
+    .phone-bal-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .phone-bal-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .phone-bal-icon.crypto-ic { background: #eff4ff; }
+    .phone-bal-icon.crypto-ic svg { width: 14px; height: 14px; fill: #0052ff; }
+    .phone-bal-icon.stocks-ic { background: #f0f0f0; }
+    .phone-bal-icon.stocks-ic svg { width: 14px; height: 14px; fill: #666; }
+    .phone-bal-icon.deriv-ic { background: #fff3e0; }
+    .phone-bal-icon.deriv-ic svg { width: 14px; height: 14px; fill: #f7931a; }
+    .phone-bal-icon.pred-ic { background: #f3e8ff; }
+    .phone-bal-icon.pred-ic svg { width: 14px; height: 14px; fill: #7c3aed; }
+    .phone-bal-icon.cash-ic { background: #f0f0f0; }
+    .phone-bal-icon.cash-ic svg { width: 14px; height: 14px; fill: #666; }
+    .phone-bal-name { font-size: 13px; font-weight: 500; }
+    .phone-bal-val { font-size: 13px; font-weight: 500; text-align: right; }
+    .phone-bal-val.green { color: #05b169; }
+
+    .hero-text-side {
+      flex: 1;
+      max-width: 520px;
+    }
+    .hero-text-side h1 {
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    .hero-text-side .subtitle {
+      font-size: 16px;
+      color: #5b616e;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .hero-text-side .promo-text {
+      font-size: 16px;
+      color: #0a0b0d;
+      margin-bottom: 28px;
+    }
+    .hero-text-side .promo-text sup {
+      font-size: 10px;
+    }
+    .hero-signup-form {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .hero-signup-form input {
+      flex: 1;
+      padding: 16px 20px;
+      border: 1px solid #d1d5db;
+      border-radius: 100px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .hero-signup-form input:focus { border-color: #0052ff; }
+    .hero-signup-form input::placeholder { color: #999; }
+    .btn-signup-hero {
+      padding: 16px 28px;
+      border-radius: 100px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      background: #0052ff;
+      transition: background 0.2s;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-signup-hero:hover { background: #003ecb; }
+
+    .hero-footnote {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 40px 20px;
+    }
+    .hero-footnote p {
+      font-size: 11px;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* ========== CAROUSEL SECTION ========== */
+    .carousel-section {
+      background: #0a0b0d;
+      padding: 40px;
+    }
+    .carousel-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      display: flex;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #16171a;
+      min-height: 420px;
+    }
+    .carousel-slide-img {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0d1b3e, #1a2550);
+      border-radius: 20px;
+      padding: 40px;
+    }
+    .carousel-slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+    }
+    .carousel-slide-content h2 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .carousel-slide-content p {
+      font-size: 16px;
+      color: #a0a3ad;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .btn-carousel {
+      display: inline-block;
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #0a0b0d;
+      background: #fff;
+      transition: all 0.2s;
+      width: fit-content;
+    }
+    .btn-carousel:hover { background: #e8e8e8; }
+
+    /* Stock card in carousel */
+    .stocks-card {
+      width: 280px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .stocks-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .stocks-card-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .stocks-card-header .arr {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stocks-card-header .arr svg { width: 16px; height: 16px; fill: #fff; }
+    .stock-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .stock-row:last-child { border: none; }
+    .stock-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stock-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      color: #fff;
+    }
+    .stock-ticker { font-size: 15px; font-weight: 600; color: #fff; }
+    .stock-vol { font-size: 12px; color: #888; }
+    .stock-right { text-align: right; }
+    .stock-price { font-size: 14px; font-weight: 600; color: #fff; }
+    .stock-change { font-size: 12px; color: #05b169; }
+
+    /* Perpetual card in carousel */
+    .perp-card {
+      width: 280px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .perp-header { margin-bottom: 4px; }
+    .perp-header h3 { font-size: 16px; font-weight: 700; color: #fff; }
+    .perp-price { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .perp-change { font-size: 13px; color: #05b169; margin-bottom: 16px; }
+    .perp-btc-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: #f7931a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      font-size: 18px;
+    }
+    .perp-chart { height: 100px; margin-bottom: 16px; }
+    .perp-chart svg { width: 100%; height: 100%; }
+    .perp-time-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 16px;
+    }
+    .perp-time-tabs span {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      color: #888;
+    }
+    .perp-time-tabs span.active { background: rgba(255,255,255,0.1); color: #05b169; }
+    .perp-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .perp-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+
+    .carousel-disclaimer {
+      text-align: center;
+      padding: 20px 0 0;
+    }
+    .carousel-disclaimer p {
+      font-size: 11px;
+      color: #666;
+      font-style: italic;
+    }
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0 0;
+    }
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .carousel-dot {
+      width: 28px;
+      height: 4px;
+      border-radius: 2px;
+      background: #555;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .carousel-dot.active { background: #fff; width: 40px; }
+    .carousel-pause {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .carousel-pause:hover { border-color: #fff; }
+    .carousel-pause svg { width: 14px; height: 14px; fill: #fff; }
+    .carousel-arrows {
+      display: flex;
+      gap: 12px;
+    }
+    .carousel-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .carousel-arrow:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .carousel-arrow svg { width: 18px; height: 18px; fill: #fff; }
+
+    /* ========== CRYPTO PRICES SECTION ========== */
+    .crypto-section {
+      background: #f7f8fa;
+      padding: 100px 40px;
+    }
+    .crypto-section-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 80px;
+    }
+    .crypto-text {
+      flex: 1;
+      max-width: 500px;
+    }
+    .crypto-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .crypto-text p {
+      font-size: 16px;
+      color: #5b616e;
+      margin-bottom: 32px;
+    }
+    .btn-dark {
+      display: inline-block;
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      background: #0a0b0d;
+      transition: background 0.2s;
+    }
+    .btn-dark:hover { background: #333; }
+    .crypto-card {
+      flex: 1;
+      max-width: 540px;
+      background: #16171a;
+      border-radius: 20px;
+      padding: 32px;
+      color: #fff;
+    }
+    .crypto-card-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+    .crypto-card-tabs button {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 100px;
+      color: #888;
+      transition: all 0.2s;
+    }
+    .crypto-card-tabs button.active {
+      background: #2a2b2e;
+      color: #fff;
+    }
+    .crypto-card-tabs button:hover { color: #fff; }
+    .crypto-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid #2a2b2e;
+    }
+    .crypto-list-item:last-child { border: none; }
+    .cli-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .cli-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+    }
+    .cli-icon.btc { background: #f7931a; }
+    .cli-icon.eth { background: #627eea; }
+    .cli-icon.usdt { background: #26a17b; }
+    .cli-icon.bnb { background: #f3ba2f; }
+    .cli-icon.xrp { background: #0a0b0d; border: 1px solid #333; }
+    .cli-icon.usdc { background: #2775ca; }
+    .cli-name { font-size: 18px; font-weight: 600; }
+    .cli-right { text-align: right; }
+    .cli-price { font-size: 16px; font-weight: 600; }
+    .cli-change { font-size: 13px; color: #05b169; margin-top: 2px; }
+    .cli-change.red { color: #e8544d; }
+    .cli-change .arrow { font-size: 11px; }
+
+    /* ========== PREDICTIONS SECTION ========== */
+    .predictions-section {
+      background: #fff;
+      padding: 100px 40px;
+    }
+    .predictions-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+    .predictions-card-wrap {
+      flex: 1;
+      max-width: 540px;
+    }
+    .predictions-card {
+      background: #0d1b3e;
+      border-radius: 20px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pred-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .pred-header h3 { font-size: 20px; font-weight: 700; color: #fff; }
+    .pred-header .arr {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pred-header .arr svg { width: 16px; height: 16px; fill: #fff; }
+    .pred-open { font-size: 13px; color: #05b169; margin-bottom: 24px; }
+    .pred-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .pred-row:last-child { border: none; }
+    .pred-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .pred-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #333;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .pred-icon .emoji { font-size: 20px; }
+    .pred-icon .z-badge {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .pred-icon .z-badge img { width: 100%; height: 100%; object-fit: cover; }
+    .pred-title { font-size: 14px; font-weight: 600; color: #fff; }
+    .pred-subtitle { font-size: 12px; color: #888; }
+    .pred-right { text-align: right; }
+    .pred-price { font-size: 14px; font-weight: 600; color: #fff; }
+    .pred-change { font-size: 12px; }
+    .pred-change.green { color: #05b169; }
+    .pred-change.red { color: #e8544d; }
+
+    .predictions-text {
+      flex: 1;
+    }
+    .predictions-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .predictions-text p {
+      font-size: 16px;
+      color: #5b616e;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 440px;
+    }
+
+    /* ========== ADVANCED TRADE SECTION ========== */
+    .advanced-section {
+      background: #fff;
+      padding: 100px 40px;
+    }
+    .advanced-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+    .advanced-text {
+      flex: 1;
+      max-width: 500px;
+    }
+    .advanced-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .advanced-text p {
+      font-size: 16px;
+      color: #5b616e;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .advanced-img {
+      flex: 1;
+      max-width: 540px;
+      background: #0a0b0d;
+      border-radius: 20px;
+      padding: 40px;
+      min-height: 360px;
+      position: relative;
+      overflow: hidden;
+    }
+    .trading-screen {
+      width: 100%;
+      height: 280px;
+      position: relative;
+    }
+    .trading-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .trading-pair { font-size: 14px; font-weight: 600; color: #fff; }
+    .trading-stats { display: flex; gap: 16px; }
+    .trading-stat { text-align: right; }
+    .trading-stat .label { font-size: 10px; color: #666; }
+    .trading-stat .value { font-size: 12px; color: #fff; font-weight: 500; }
+    .candlestick-chart {
+      width: 100%;
+      height: 160px;
+      position: relative;
+    }
+    .candle {
+      position: absolute;
+      bottom: 0;
+      width: 6px;
+    }
+    .candle .wick { width: 1px; background: #666; margin: 0 auto; }
+    .candle .body { width: 6px; border-radius: 1px; }
+    .candle.green .body { background: #05b169; }
+    .candle.red .body { background: #e8544d; }
+    .order-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .order-btn {
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .order-btn.buy { background: #05b169; }
+    .order-btn.sell { background: #e8544d; }
+
+    /* ========== ZOINBASE ONE SECTION ========== */
+    .zone-section {
+      background: #fff;
+      padding: 100px 40px;
+    }
+    .zone-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+    .zone-phone {
+      flex: 1;
+      max-width: 540px;
+      background: #f7f8fa;
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+    }
+    .zone-phone-mockup {
+      width: 260px;
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+    }
+    .zone-phone-time {
+      font-size: 12px;
+      font-weight: 600;
+      color: #0a0b0d;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .zone-phone-time .icons { font-size: 10px; color: #666; }
+    .zone-success-icon {
+      width: 64px;
+      height: 64px;
+      background: #0052ff;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .zone-success-icon svg { width: 32px; height: 32px; fill: #fff; }
+    .zone-trade-text h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .zone-trade-text p { font-size: 12px; color: #888; margin-bottom: 20px; }
+    .zone-fee-banner {
+      background: #f7f8fa;
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 12px;
+    }
+    .zone-fee-banner .price { font-weight: 600; }
+    .zone-fee-banner .z-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .zone-fee-banner .z-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .zone-benefits {
+      background: #f7f8fa;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: left;
+    }
+    .zone-benefits h5 { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+    .zone-benefits p { font-size: 11px; color: #888; margin-bottom: 6px; }
+    .zone-benefits a { font-size: 11px; color: #0052ff; font-weight: 600; }
+    .zone-content { flex: 1; }
+    .zone-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .zone-badge .dot {
+      width: 20px;
+      height: 20px;
+      background: #0a0b0d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .zone-badge .dot span { width: 8px; height: 8px; background: #fff; border-radius: 50%; display: block; }
+    .zone-content h2 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .zone-content > p {
+      font-size: 16px;
+      color: #5b616e;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 420px;
+    }
+
+    /* ========== BASE APP SECTION ========== */
+    .baseapp-section {
+      background: #f7f8fa;
+      padding: 100px 40px;
+    }
+    .baseapp-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+    .baseapp-text {
+      flex: 1;
+      max-width: 500px;
+    }
+    .baseapp-text .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      background: #fff;
+    }
+    .baseapp-text .badge .dot {
+      width: 20px;
+      height: 20px;
+      background: #0a0b0d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .baseapp-text .badge .dot span { width: 8px; height: 8px; background: #fff; border-radius: 50%; display: block; }
+    .baseapp-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .baseapp-text p {
+      font-size: 16px;
+      color: #5b616e;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .baseapp-img {
+      flex: 1;
+      max-width: 540px;
+      background: #eee;
+      border-radius: 20px;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .baseapp-phone {
+      width: 220px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .baseapp-phone-header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .baseapp-phone-header .avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .baseapp-phone-header .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .baseapp-phone-tabs {
+      display: flex;
+      padding: 8px 16px;
+    }
+    .baseapp-phone-tabs span {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 100px;
+      color: #666;
+    }
+    .baseapp-phone-tabs span.active { background: #0a0b0d; color: #fff; }
+    .baseapp-phone-content {
+      padding: 12px 16px;
+    }
+    .baseapp-post {
+      margin-bottom: 12px;
+    }
+    .baseapp-post .user { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+    .baseapp-post .desc { font-size: 11px; color: #888; margin-bottom: 8px; }
+    .baseapp-post-img {
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77);
+      border-radius: 12px;
+    }
+    .baseapp-phone-footer {
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      border-top: 1px solid #f0f0f0;
+    }
+    .baseapp-phone-footer span { font-size: 16px; color: #ccc; }
+    .baseapp-phone-footer span:first-child { color: #0a0b0d; }
+
+    /* ========== PRIME SECTION ========== */
+    .prime-section {
+      background: #fff;
+      padding: 100px 40px;
+    }
+    .prime-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+    .prime-img {
+      flex: 1;
+      max-width: 540px;
+      background: #f7f8fa;
+      border-radius: 20px;
+      padding: 40px;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .prime-screens {
+      position: relative;
+      width: 100%;
+      height: 300px;
+    }
+    .prime-screen {
+      position: absolute;
+      width: 200px;
+      height: 260px;
+      background: #0a0b0d;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    .prime-screen:nth-child(1) { left: 10%; top: 20px; z-index: 1; }
+    .prime-screen:nth-child(2) { left: 30%; top: 0; z-index: 2; }
+    .prime-screen:nth-child(3) { left: 50%; top: 30px; z-index: 1; }
+    .prime-screen-bar {
+      height: 24px;
+      background: #16171a;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 4px;
+    }
+    .prime-screen-bar .dot { width: 4px; height: 4px; border-radius: 50%; background: #05b169; }
+    .prime-screen-body {
+      padding: 8px;
+    }
+    .prime-screen-row {
+      height: 3px;
+      background: #2a2b2e;
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+    .prime-screen-row.green { background: #05b169; width: 60%; }
+    .prime-screen-row.short { width: 40%; }
+    .prime-text { flex: 1; }
+    .prime-text .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .prime-text .badge .dot {
+      width: 20px;
+      height: 20px;
+      background: #0a0b0d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .prime-text .badge .dot span { width: 8px; height: 8px; background: #fff; border-radius: 50%; display: block; }
+    .prime-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .prime-text p {
+      font-size: 16px;
+      color: #5b616e;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* ========== FEATURE CARDS SECTION ========== */
+    .feature-cards-section {
+      background: #fff;
+      padding: 0 40px 100px;
+    }
+    .feature-cards-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .feature-card {
+      background: #f7f8fa;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .feature-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+    .feature-card-img {
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card-img.explore-bg { background: linear-gradient(135deg, #f0f4ff, #e8ecf8); }
+    .feature-card-img.learn-bg { background: #3ec9a7; }
+    .globe-illustration {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4d8df7, #0052ff);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .globe-illustration::before {
+      content: '';
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      border: 2px dashed rgba(0,82,255,0.2);
+      position: absolute;
+    }
+    .globe-grid {
+      width: 160px;
+      height: 160px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      position: relative;
+    }
+    .globe-grid::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(255,255,255,0.3);
+    }
+    .globe-grid::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(255,255,255,0.3);
+    }
+    .floating-icon {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .floating-icon.pct1 { background: #fff; color: #0052ff; top: 20px; left: 40px; border: 1px solid #e0e0e0; }
+    .floating-icon.pct2 { background: #fff; color: #0052ff; bottom: 40px; left: 60px; border: 1px solid #e0e0e0; }
+    .floating-icon.dark1 { background: #0a0b0d; color: #fff; top: 20px; right: 20px; }
+    .floating-icon.green1 { background: #05b169; color: #fff; bottom: 50px; right: 30px; }
+    .feature-card-body {
+      padding: 28px 32px 32px;
+    }
+    .feature-card-body h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .feature-card-body p { font-size: 14px; color: #5b616e; line-height: 1.6; }
+
+    /* ========== TAKE CONTROL SECTION ========== */
+    .takecontrol-section {
+      background: #fff;
+      padding: 100px 40px;
+    }
+    .takecontrol-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+    .takecontrol-text {
+      flex: 1;
+      max-width: 500px;
+    }
+    .takecontrol-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .takecontrol-text .promo {
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+    .takecontrol-text .promo a {
+      font-weight: 600;
+      color: #0a0b0d;
+      text-decoration: none;
+    }
+    .takecontrol-signup {
+      display: flex;
+      gap: 12px;
+    }
+    .takecontrol-signup input {
+      flex: 1;
+      padding: 16px 20px;
+      border: 1px solid #d1d5db;
+      border-radius: 100px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+    }
+    .takecontrol-signup input:focus { border-color: #0052ff; }
+    .takecontrol-signup input::placeholder { color: #999; }
+    .takecontrol-bubbles {
+      flex: 1;
+      max-width: 500px;
+      position: relative;
+      height: 420px;
+    }
+    .crypto-bubble {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .crypto-bubble.algo { width: 130px; height: 130px; background: #0a0b0d; top: 20px; left: 50%; font-size: 40px; }
+    .crypto-bubble.zoin { width: 120px; height: 120px; background: #0052ff; top: 100px; left: 10%; overflow: hidden; }
+    .crypto-bubble.zoin img { width: 100%; height: 100%; object-fit: cover; }
+    .crypto-bubble.arrow-b { width: 100px; height: 100px; background: #f3ba2f; top: 60px; right: 0; font-size: 32px; }
+    .crypto-bubble.btc-b { width: 140px; height: 140px; background: #f7931a; top: 200px; left: 35%; font-size: 36px; }
+    .crypto-bubble.doge-b { width: 110px; height: 110px; background: #c2a633; bottom: 20px; left: 10%; font-size: 26px; }
+    .crypto-bubble.ada-b { width: 100px; height: 100px; background: #3C5898; bottom: 0; right: 10%; }
+    .crypto-bubble.eth-b { width: 120px; height: 120px; background: #a8b3d4; bottom: 60px; left: 55%; }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: #f7f8fa;
+      padding: 80px 40px 40px;
+    }
+    .footer-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .footer-logo { flex-shrink: 0; }
+    .footer-logo .logo-icon { width: 40px; height: 40px; }
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 40px;
+      flex: 1;
+    }
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #0a0b0d;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: #5b616e;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: #0052ff; }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid #e0e0e0;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .footer-social a { display: flex; align-items: center; }
+    .footer-social a svg { width: 20px; height: 20px; fill: #0a0b0d; }
+    .footer-social a:hover svg { fill: #0052ff; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .hero { flex-direction: column; padding: 40px 24px; }
+      .hero-phone-side { max-width: 100%; }
+      .hero-text-side { max-width: 100%; text-align: center; }
+      .hero-text-side h1 { font-size: 42px; }
+      .hero-signup-form { justify-content: center; }
+      .crypto-section-inner,
+      .predictions-inner,
+      .advanced-inner,
+      .zone-inner,
+      .baseapp-inner,
+      .prime-inner,
+      .takecontrol-inner { flex-direction: column; }
+      .crypto-text,
+      .predictions-text,
+      .advanced-text,
+      .baseapp-text,
+      .prime-text,
+      .takecontrol-text { max-width: 100%; text-align: center; }
+      .feature-cards-inner { grid-template-columns: 1fr; }
+      .footer-columns { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { flex-direction: column; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-text-side h1 { font-size: 32px; }
+      .hero-phone-wrapper { width: 100%; height: auto; padding: 20px; }
+      .hero-signup-form { flex-direction: column; }
+      .hero-signup-form input { width: 100%; }
+      .carousel-slide { flex-direction: column; min-height: auto; }
+      .carousel-slide-content { padding: 30px; }
+      .carousel-slide-content h2 { font-size: 28px; }
+      .crypto-text h2,
+      .predictions-text h2,
+      .advanced-text h2,
+      .zone-content h2,
+      .baseapp-text h2,
+      .prime-text h2,
+      .takecontrol-text h2 { font-size: 32px; }
+      .footer-columns { grid-template-columns: 1fr; }
+      .takecontrol-bubbles { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== PROMO BANNER ===== -->
+  <div class="promo-banner">
+    <a href="#">Earn up to $2,000 when you buy $50 in crypto!<sup>1</sup></a>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-left">
+        <a href="#" class="logo">
+          <div class="logo-icon"><img src="zoinbase.jpg" alt="Zoinbase"></div>
+        </a>
+        <div class="nav-links">
+          <a href="#">Cryptocurrencies</a>
+          <a href="#">Individuals</a>
+          <a href="#">Businesses</a>
+          <a href="#">Institutions</a>
+          <a href="#">Developers</a>
+          <a href="#">Company</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <button class="nav-icon" aria-label="Search">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </button>
+        <button class="nav-icon" aria-label="Language">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        </button>
+        <button class="btn-signin">Sign in</button>
+        <a href="#" class="btn-signup-nav">Sign up</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <div class="hero-phone-side">
+      <div class="hero-phone-wrapper">
+        <div class="hero-phone-mockup">
+          <div class="phone-top-bar">
+            <span class="hamburger">&#9776;</span>
+            <div class="phone-search">
+              <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 5-1.5 1.5-5-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              Search
+            </div>
+            <div class="phone-top-icons">
+              <div class="z-mini"><img src="zoinbase.jpg" alt="Z"></div>
+              <span>&#9776;</span>
+              <span>&#128276;</span>
+            </div>
+          </div>
+          <div class="phone-portfolio">
+            <div class="total">$33,683.80</div>
+            <div class="change"><span class="arrow-up">&#8599;</span> $131.36 (1.38%) 1D &gt;</div>
+          </div>
+          <div class="phone-chart-area">
+            <svg viewBox="0 0 300 90">
+              <defs>
+                <linearGradient id="heroChartGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0052ff" stop-opacity="0.12"/>
+                  <stop offset="100%" stop-color="#0052ff" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="chart-area-main" d="M0,70 Q20,68 40,65 Q60,62 80,58 Q100,55 120,52 Q140,50 160,48 Q180,45 200,40 Q220,35 240,28 Q260,22 270,18 Q280,16 290,14 L300,12 L300,90 L0,90 Z"/>
+              <path class="chart-line-main" d="M0,70 Q20,68 40,65 Q60,62 80,58 Q100,55 120,52 Q140,50 160,48 Q180,45 200,40 Q220,35 240,28 Q260,22 270,18 Q280,16 290,14 L300,12"/>
+              <circle class="chart-dot" cx="290" cy="14" r="4"/>
+            </svg>
+          </div>
+          <div class="phone-time-tabs">
+            <span>1H</span>
+            <span class="active">1D</span>
+            <span>1W</span>
+            <span>1M</span>
+            <span>1Y</span>
+            <span>ALL</span>
+          </div>
+          <div class="phone-balance-rows">
+            <div class="phone-bal-row">
+              <div class="phone-bal-left">
+                <div class="phone-bal-icon crypto-ic">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><circle cx="6" cy="8" r="3"/><circle cx="18" cy="8" r="3"/></svg>
+                </div>
+                <span class="phone-bal-name">Crypto</span>
+              </div>
+              <span class="phone-bal-val">$14,186.12</span>
+            </div>
+            <div class="phone-bal-row">
+              <div class="phone-bal-left">
+                <div class="phone-bal-icon stocks-ic">
+                  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93h14c0 4.08-3.05 7.44-7 7.93z"/></svg>
+                </div>
+                <span class="phone-bal-name">Stocks</span>
+              </div>
+              <span class="phone-bal-val">$8,133.98</span>
+            </div>
+            <div class="phone-bal-row">
+              <div class="phone-bal-left">
+                <div class="phone-bal-icon deriv-ic">
+                  <svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                </div>
+                <span class="phone-bal-name">Derivatives</span>
+              </div>
+              <span class="phone-bal-val green">&#8599; $148.84</span>
+            </div>
+            <div class="phone-bal-row">
+              <div class="phone-bal-left">
+                <div class="phone-bal-icon pred-ic">
+                  <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <span class="phone-bal-name">Predictions</span>
+              </div>
+              <span class="phone-bal-val green">&#8599; $42.69</span>
+            </div>
+            <div class="phone-bal-row">
+              <div class="phone-bal-left">
+                <div class="phone-bal-icon cash-ic">
+                  <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                </div>
+                <span class="phone-bal-name">Cash</span>
+              </div>
+              <span class="phone-bal-val">$10,124.22</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-text-side">
+      <h1>The future of finance is here.</h1>
+      <p class="subtitle">Trade crypto, stocks,<sup>2</sup> and more on a platform you can trust.</p>
+      <p class="promo-text">Sign up and get up to $2,000 in crypto.<sup>1</sup></p>
+      <div class="hero-signup-form">
+        <input type="email" placeholder="satoshi@nakamoto.com">
+        <button class="btn-signup-hero">Sign up</button>
+      </div>
+    </div>
+  </section>
+  <div class="hero-footnote">
+    <p>Securities offered by Zoinbase Capital Markets (member SIPC, FINRA). Listed futures and swaps are offered via Zoinbase Financial Markets Inc.</p>
+  </div>
+
+  <!-- ===== CAROUSEL SECTION ===== -->
+  <section class="carousel-section">
+    <div class="carousel-container">
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Slide 1: Stocks -->
+        <div class="carousel-slide">
+          <div class="carousel-slide-img">
+            <div class="stocks-card">
+              <div class="stocks-card-header">
+                <h3>Stocks</h3>
+                <div class="arr"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+              </div>
+              <div class="stock-row">
+                <div class="stock-left">
+                  <div class="stock-icon">G</div>
+                  <div><div class="stock-ticker">GOOG</div><div class="stock-vol">$2.9B vol</div></div>
+                </div>
+                <div class="stock-right">
+                  <div class="stock-price">$234.67</div>
+                  <div class="stock-change">&#8599; 11.26%</div>
+                </div>
+              </div>
+              <div class="stock-row">
+                <div class="stock-left">
+                  <div class="stock-icon">N</div>
+                  <div><div class="stock-ticker">NFLX</div><div class="stock-vol">$3.5B vol</div></div>
+                </div>
+                <div class="stock-right">
+                  <div class="stock-price">$79.80</div>
+                  <div class="stock-change">&#8599; 5.21%</div>
+                </div>
+              </div>
+              <div class="stock-row">
+                <div class="stock-left">
+                  <div class="stock-icon">P</div>
+                  <div><div class="stock-ticker">PLTR</div><div class="stock-vol">$8.6B vol</div></div>
+                </div>
+                <div class="stock-right">
+                  <div class="stock-price">$187.20</div>
+                  <div class="stock-change">&#8599; 3.08%</div>
+                </div>
+              </div>
+              <div class="stock-row" style="opacity:0.4">
+                <div class="stock-left">
+                  <div class="stock-icon">C</div>
+                  <div><div class="stock-ticker">COIN</div></div>
+                </div>
+                <div class="stock-right">
+                  <div class="stock-price">$274.20</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide-content">
+            <h2>Trade stocks around the clock</h2>
+            <p>Get 24/5 access to thousands of stocks and pay zero commission. Now available to all U.S. traders.<sup>2</sup></p>
+            <a href="#" class="btn-carousel">Start trading</a>
+          </div>
+        </div>
+        <!-- Slide 2: Perpetuals -->
+        <div class="carousel-slide">
+          <div class="carousel-slide-img">
+            <div class="perp-card" style="position:relative;">
+              <div class="perp-header"><h3>BTC Perpetual</h3></div>
+              <div class="perp-price">$91,640.03</div>
+              <div class="perp-change">&#8599; $2,530.06 (2.27%)</div>
+              <div class="perp-btc-icon">B</div>
+              <div class="perp-chart">
+                <svg viewBox="0 0 280 80">
+                  <defs>
+                    <linearGradient id="perpGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#05b169" stop-opacity="0.2"/>
+                      <stop offset="100%" stop-color="#05b169" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,60 Q20,58 40,55 Q60,50 80,52 Q100,48 120,45 Q140,40 160,38 Q180,35 200,30 Q220,25 240,20 Q260,18 280,12" stroke="#05b169" stroke-width="1.5" fill="none"/>
+                  <path d="M0,60 Q20,58 40,55 Q60,50 80,52 Q100,48 120,45 Q140,40 160,38 Q180,35 200,30 Q220,25 240,20 Q260,18 280,12 L280,80 L0,80 Z" fill="url(#perpGrad)"/>
+                  <circle cx="272" cy="13" r="3" fill="#05b169" stroke="#fff" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="perp-time-tabs">
+                <span class="active">1H</span><span>1D</span><span>1W</span><span>1M</span><span>1Y</span><span>All</span>
+              </div>
+              <div class="perp-buttons">
+                <span class="perp-btn">Sell &middot; Short</span>
+                <span class="perp-btn">Buy &middot; Long</span>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide-content">
+            <h2>Trade more with less</h2>
+            <p>Unlock leverage with futures and perpetuals trading.<sup>3</sup></p>
+            <a href="#" class="btn-carousel">Trade now</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-disclaimer">
+        <p>Image is for informational purposes. Prices shown may not reflect current price.</p>
+      </div>
+      <div class="carousel-controls">
+        <div class="carousel-dots">
+          <div class="carousel-dot active" data-slide="0"></div>
+          <div class="carousel-dot" data-slide="1"></div>
+          <button class="carousel-pause" id="carouselPause" aria-label="Pause carousel">
+            <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          </button>
+        </div>
+        <div class="carousel-arrows">
+          <button class="carousel-arrow" id="carouselPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+          <button class="carousel-arrow" id="carouselNext" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CRYPTO PRICES SECTION ===== -->
+  <section class="crypto-section">
+    <div class="crypto-section-inner">
+      <div class="crypto-text">
+        <h2>Explore millions of tokens and stocks, all in one place.</h2>
+        <p>One trusted account for trading everything &mdash; from stocks to Bitcoin.<sup>1</sup></p>
+        <a href="#" class="btn-dark">Get started</a>
+      </div>
+      <div class="crypto-card">
+        <div class="crypto-card-tabs">
+          <button class="active" data-tab="tradable">Tradable</button>
+          <button data-tab="gainers">Top gainers</button>
+          <button data-tab="new">New on Zoinbase</button>
+        </div>
+        <div class="crypto-list" id="cryptoList">
+          <div class="crypto-list-item">
+            <div class="cli-left"><div class="cli-icon btc">B</div><span class="cli-name">Bitcoin</span></div>
+            <div class="cli-right"><div class="cli-price">$67,557.12</div><div class="cli-change"><span class="arrow">&#8599;</span> 0.84%</div></div>
+          </div>
+          <div class="crypto-list-item">
+            <div class="cli-left"><div class="cli-icon eth"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 1.5l-8 13.1L12 18.7l8-4.1L12 1.5zm0 18.9l-8-4.7L12 22.5l8-6.8-8 4.7z"/></svg></div><span class="cli-name">Ethereum</span></div>
+            <div class="cli-right"><div class="cli-price">$1,985.30</div><div class="cli-change"><span class="arrow">&#8599;</span> 1.80%</div></div>
+          </div>
+          <div class="crypto-list-item">
+            <div class="cli-left"><div class="cli-icon usdt">T</div><span class="cli-name">Tether</span></div>
+            <div class="cli-right"><div class="cli-price">$1.00</div><div class="cli-change red"><span class="arrow">&#8600;</span> 0.00%</div></div>
+          </div>
+          <div class="crypto-list-item">
+            <div class="cli-left"><div class="cli-icon bnb">B</div><span class="cli-name">BNB</span></div>
+            <div class="cli-right"><div class="cli-price">$625.55</div><div class="cli-change"><span class="arrow">&#8599;</span> 1.44%</div></div>
+          </div>
+          <div class="crypto-list-item">
+            <div class="cli-left"><div class="cli-icon xrp">X</div><span class="cli-name">XRP</span></div>
+            <div class="cli-right"><div class="cli-price">$1.35</div><div class="cli-change"><span class="arrow">&#8599;</span> 0.53%</div></div>
+          </div>
+          <div class="crypto-list-item">
+            <div class="cli-left"><div class="cli-icon usdc">$</div><span class="cli-name">USDC</span></div>
+            <div class="cli-right"><div class="cli-price">$1.00</div><div class="cli-change">--</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PREDICTIONS SECTION ===== -->
+  <section class="predictions-section">
+    <div class="predictions-inner">
+      <div class="predictions-card-wrap">
+        <div class="predictions-card">
+          <div class="pred-header">
+            <h3>Predictions</h3>
+            <div class="arr"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          </div>
+          <div class="pred-open">&#8599; $2.66 open</div>
+          <div class="pred-row">
+            <div class="pred-left">
+              <div class="pred-icon">
+                <span class="emoji">&#127944;</span>
+                <div class="z-badge"><img src="zoinbase.jpg" alt=""></div>
+              </div>
+              <div>
+                <div class="pred-title">Los Angeles</div>
+                <div class="pred-subtitle">2025-26 Pro football champion?</div>
+              </div>
+            </div>
+            <div class="pred-right">
+              <div class="pred-price">$188.32</div>
+              <div class="pred-change green">&#8599; $1.52</div>
+            </div>
+          </div>
+          <div class="pred-row">
+            <div class="pred-left">
+              <div class="pred-icon">
+                <span class="emoji" style="font-size:16px;">&#8383;</span>
+                <div class="z-badge"><img src="zoinbase.jpg" alt=""></div>
+              </div>
+              <div>
+                <div class="pred-title">Before June 2026</div>
+                <div class="pred-subtitle">When will Bitcoin hit $150k?</div>
+              </div>
+            </div>
+            <div class="pred-right">
+              <div class="pred-price">$102.16</div>
+              <div class="pred-change red">&#8600; $3.36</div>
+            </div>
+          </div>
+          <div class="pred-row">
+            <div class="pred-left">
+              <div class="pred-icon">
+                <span class="emoji" style="font-size:16px;">&#127963;</span>
+                <div class="z-badge"><img src="zoinbase.jpg" alt=""></div>
+              </div>
+              <div>
+                <div class="pred-title">Fed maintains rate</div>
+                <div class="pred-subtitle">Fed decision in January?</div>
+              </div>
+            </div>
+            <div class="pred-right">
+              <div class="pred-price">$68.60</div>
+              <div class="pred-change green">&#8599; $4.50</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="predictions-text">
+        <h2>Turn your insights into trades.</h2>
+        <p>Trade your predictions on thousands of real world events across sports, politics, crypto, culture and more.<sup>3</sup></p>
+        <a href="#" class="btn-dark">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ADVANCED TRADE SECTION ===== -->
+  <section class="advanced-section">
+    <div class="advanced-inner">
+      <div class="advanced-text">
+        <h2>Powerful tools, designed for the advanced trader.</h2>
+        <p>Powerful analytical tools with the safety and security of Zoinbase deliver the ultimate trading experience. Tap into sophisticated charting capabilities, real-time order books, and deep liquidity across hundreds of markets.</p>
+        <a href="#" class="btn-dark">Start trading</a>
+      </div>
+      <div class="advanced-img">
+        <div class="trading-screen">
+          <div class="trading-header">
+            <span class="trading-pair">BTC / USD</span>
+            <div class="trading-stats">
+              <div class="trading-stat"><div class="label">24h High</div><div class="value">$92,100.50</div></div>
+              <div class="trading-stat"><div class="label">24h Low</div><div class="value">$89,450.00</div></div>
+              <div class="trading-stat"><div class="label">24h Vol</div><div class="value">2,841 BTC</div></div>
+            </div>
+          </div>
+          <div class="candlestick-chart" id="candleChart"></div>
+          <div class="order-buttons">
+            <span class="order-btn buy">Buy</span>
+            <span class="order-btn sell">Sell</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ZOINBASE ONE SECTION ===== -->
+  <section class="zone-section">
+    <div class="zone-inner">
+      <div class="zone-phone">
+        <div class="zone-phone-mockup">
+          <div class="zone-phone-time">
+            <span>3:57</span>
+            <span class="icons">&#9679;&#9679;&#9679;</span>
+          </div>
+          <div style="position:relative; display:inline-block;">
+            <div class="zone-success-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <span style="position:absolute;top:-4px;right:-4px;color:#f7b928;font-size:18px;">&#10022;</span>
+          </div>
+          <div class="zone-trade-text">
+            <h4>Trade successful!</h4>
+            <p>You got 0.012423 BTC</p>
+          </div>
+          <div class="zone-fee-banner">
+            <span class="price">$14.68</span>
+            <span class="z-icon"><img src="zoinbase.jpg" alt="Z"></span>
+            <span>No trading fees with Zoinbase One</span>
+          </div>
+          <div class="zone-benefits">
+            <h5>Exclusive member benefits</h5>
+            <p>Zoinbase One members get boosted staking rewards.</p>
+            <a href="#">Learn more</a>
+          </div>
+        </div>
+      </div>
+      <div class="zone-content">
+        <div class="zone-badge">
+          <div class="dot"><span></span></div>
+          ZOINBASE ONE
+        </div>
+        <h2>Zero trading fees, more rewards.</h2>
+        <p>Get more out of crypto with one membership: zero trading fees, boosted rewards, priority support, and more.</p>
+        <a href="#" class="btn-dark">Claim free trial</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BASE APP SECTION ===== -->
+  <section class="baseapp-section">
+    <div class="baseapp-inner">
+      <div class="baseapp-text">
+        <div class="badge">
+          <div class="dot"><span></span></div>
+          BASE APP
+        </div>
+        <h2>Countless ways to earn crypto with the Base App.</h2>
+        <p>An everything app to trade, create, discover, and chat, all in one place.</p>
+        <a href="#" class="btn-dark">Learn more</a>
+      </div>
+      <div class="baseapp-img">
+        <div class="baseapp-phone">
+          <div class="baseapp-phone-header">
+            <div class="avatar"><img src="zoinbase.jpg" alt=""></div>
+            <div class="baseapp-phone-tabs">
+              <span class="active">Trade</span>
+              <span>Talk</span>
+            </div>
+          </div>
+          <div class="baseapp-phone-content">
+            <div class="baseapp-post">
+              <div class="user">jasmine</div>
+              <div class="desc">Detail on my new painting</div>
+              <div class="baseapp-post-img"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:11px;">
+              <span style="color:#888;">1.8k &#10084; 22.1k &#128172;</span>
+              <span style="background:#0052ff;color:#fff;padding:4px 10px;border-radius:100px;font-weight:600;font-size:11px;">&#9401; $1.00</span>
+            </div>
+            <div style="padding:8px 0;border-top:1px solid #f0f0f0;margin-top:8px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:#eee;"></div>
+                <span style="font-size:11px;color:#888;">lilFox bought $10 of $VIRTUAL</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;">
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <div style="width:24px;height:24px;border-radius:50%;background:#05b169;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;">V</div>
+                  <div>
+                    <div style="font-size:12px;font-weight:600;">Virtual Protocol</div>
+                    <div style="font-size:10px;color:#888;">VIRTUAL</div>
+                  </div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:12px;font-weight:600;">$742M</div>
+                  <div style="font-size:10px;color:#888;">Market Cap</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="baseapp-phone-footer">
+            <span>&#8962;</span>
+            <span>&#128269;</span>
+            <span>&#8644;</span>
+            <span>&#128276;</span>
+            <span>&#128197;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRIME SECTION ===== -->
+  <section class="prime-section">
+    <div class="prime-inner">
+      <div class="prime-img">
+        <div class="prime-screens">
+          <div class="prime-screen">
+            <div class="prime-screen-bar"><div class="dot"></div><div class="dot" style="background:#f7931a;"></div></div>
+            <div class="prime-screen-body">
+              <div class="prime-screen-row" style="width:80%;"></div>
+              <div class="prime-screen-row green"></div>
+              <div class="prime-screen-row short"></div>
+              <div class="prime-screen-row" style="width:70%;"></div>
+              <div class="prime-screen-row short"></div>
+              <div class="prime-screen-row" style="width:90%;"></div>
+              <div class="prime-screen-row green" style="width:50%;"></div>
+              <div class="prime-screen-row short"></div>
+              <div class="prime-screen-row" style="width:60%;"></div>
+              <div class="prime-screen-row green" style="width:45%;"></div>
+            </div>
+          </div>
+          <div class="prime-screen">
+            <div class="prime-screen-bar"><div class="dot"></div><div class="dot" style="background:#0052ff;"></div></div>
+            <div class="prime-screen-body">
+              <div class="prime-screen-row" style="width:70%;"></div>
+              <div class="prime-screen-row green" style="width:80%;"></div>
+              <div class="prime-screen-row short"></div>
+              <div class="prime-screen-row" style="width:60%;"></div>
+              <div class="prime-screen-row green" style="width:40%;"></div>
+              <div class="prime-screen-row" style="width:90%;"></div>
+              <div class="prime-screen-row short"></div>
+              <div class="prime-screen-row green" style="width:55%;"></div>
+              <div class="prime-screen-row" style="width:75%;"></div>
+              <div class="prime-screen-row short"></div>
+            </div>
+          </div>
+          <div class="prime-screen">
+            <div class="prime-screen-bar"><div class="dot"></div><div class="dot" style="background:#e8544d;"></div></div>
+            <div class="prime-screen-body">
+              <div class="prime-screen-row green" style="width:65%;"></div>
+              <div class="prime-screen-row" style="width:85%;"></div>
+              <div class="prime-screen-row short"></div>
+              <div class="prime-screen-row green" style="width:50%;"></div>
+              <div class="prime-screen-row" style="width:70%;"></div>
+              <div class="prime-screen-row short"></div>
+              <div class="prime-screen-row" style="width:80%;"></div>
+              <div class="prime-screen-row green" style="width:45%;"></div>
+              <div class="prime-screen-row" style="width:60%;"></div>
+              <div class="prime-screen-row short"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="prime-text">
+        <div class="badge">
+          <div class="dot"><span></span></div>
+          PRIME
+        </div>
+        <h2>The financial institution for a digital asset future.</h2>
+        <p>Zoinbase Prime is the first choice for sophisticated investors and institutions that want to invest in digital assets.</p>
+        <a href="#" class="btn-dark">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE CARDS ===== -->
+  <section class="feature-cards-section">
+    <div class="feature-cards-inner">
+      <div class="feature-card">
+        <div class="feature-card-img explore-bg">
+          <div class="globe-illustration"><div class="globe-grid"></div></div>
+          <span class="floating-icon pct1">%</span>
+          <span class="floating-icon pct2">%</span>
+          <span class="floating-icon dark1"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg></span>
+          <span class="floating-icon green1"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 1.5l-8 13.1L12 18.7l8-4.1L12 1.5z"/></svg></span>
+        </div>
+        <div class="feature-card-body">
+          <h3>Explore more crypto</h3>
+          <p>Browse real-time prices, charts, and daily movers for thousands of cryptocurrencies, all in one place.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-img learn-bg">
+          <div style="width:160px;height:200px;position:relative;">
+            <div style="width:140px;height:180px;background:#fff;border-radius:20px;position:absolute;bottom:0;left:10px;box-shadow:0 4px 20px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;">
+              <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#ff6b35,#ffd700,#0052ff);display:flex;align-items:center;justify-content:center;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+            </div>
+            <div style="position:absolute;top:10px;right:-30px;">
+              <div style="width:32px;height:32px;background:#ffd700;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:8px;"><span style="font-size:14px;">&#9650;</span></div>
+              <div style="width:28px;height:28px;background:#0052ff;border-radius:6px;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:12px;">&#9670;</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          <h3>Learn the basics</h3>
+          <p>Explore beginner guides, practical tutorials, and market updates on Bitcoin, Ethereum and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TAKE CONTROL SECTION ===== -->
+  <section class="takecontrol-section">
+    <div class="takecontrol-inner">
+      <div class="takecontrol-text">
+        <h2>Take control of your money.</h2>
+        <p class="promo">Start your portfolio today and <a href="#">get up to $2,000 in crypto<sup>1</sup>&rarr;</a></p>
+        <div class="takecontrol-signup">
+          <input type="email" placeholder="satoshi@nakamoto.com">
+          <button class="btn-signup-hero">Sign up</button>
+        </div>
+      </div>
+      <div class="takecontrol-bubbles">
+        <div class="crypto-bubble algo" style="font-family:monospace;">&#9083;</div>
+        <div class="crypto-bubble zoin"><img src="zoinbase.jpg" alt="Zoinbase"></div>
+        <div class="crypto-bubble arrow-b">&rarr;</div>
+        <div class="crypto-bubble btc-b">&#8383;</div>
+        <div class="crypto-bubble doge-b" style="font-family:serif;">&#208;</div>
+        <div class="crypto-bubble ada-b">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="4" r="2"/><circle cx="4" cy="8" r="1.5"/><circle cx="20" cy="8" r="1.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="6" cy="16" r="1.5"/><circle cx="18" cy="16" r="1.5"/><circle cx="12" cy="20" r="2"/></svg>
+        </div>
+        <div class="crypto-bubble eth-b">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><path d="M12 1.5l-8 13.1L12 18.7l8-4.1L12 1.5zm0 18.9l-8-4.7L12 22.5l8-6.8-8 4.7z"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <div class="logo-icon"><img src="zoinbase.jpg" alt="Zoinbase"></div>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#">About</a>
+            <a href="#">Careers</a>
+            <a href="#">Affiliates</a>
+            <a href="#">Blog</a>
+            <a href="#">Press</a>
+            <a href="#">Security</a>
+            <a href="#">Investors</a>
+            <a href="#">Vendors</a>
+            <a href="#">Legal &amp; privacy</a>
+            <a href="#">Cookie policy</a>
+            <a href="#">Cookie preferences</a>
+            <a href="#">Do Not Sell or Share My Personal Information</a>
+            <a href="#">Digital Asset Disclosures</a>
+            <h4 style="margin-top:24px;">Learn</h4>
+            <a href="#">Explore</a>
+            <a href="#">Market statistics</a>
+            <a href="#">Zoinbase Bytes newsletter</a>
+            <a href="#">Crypto basics</a>
+            <a href="#">Tips &amp; tutorials</a>
+            <a href="#">Crypto glossary</a>
+            <a href="#">Market updates</a>
+            <a href="#">What is Bitcoin?</a>
+            <a href="#">What is crypto?</a>
+            <a href="#">What is a blockchain?</a>
+            <a href="#">How to set up a crypto wallet?</a>
+            <a href="#">How to send crypto?</a>
+            <a href="#">Taxes</a>
+          </div>
+          <div class="footer-col">
+            <h4>Individuals</h4>
+            <a href="#">Buy &amp; sell</a>
+            <a href="#">Earn free crypto</a>
+            <a href="#">Base App</a>
+            <a href="#">Zoinbase One</a>
+            <a href="#">Zoinbase Wealth</a>
+            <a href="#">Credit Card</a>
+            <a href="#">Debit Card</a>
+            <h4 style="margin-top:24px;">Businesses</h4>
+            <a href="#">Asset Listings</a>
+            <a href="#">Zoinbase Business</a>
+            <a href="#">Payments</a>
+            <a href="#">Commerce</a>
+            <a href="#">Token Manager</a>
+            <h4 style="margin-top:24px;">Institutions</h4>
+            <a href="#">Prime</a>
+            <a href="#">Staking</a>
+            <a href="#">Exchange</a>
+            <a href="#">International Exchange</a>
+            <a href="#">Derivatives Exchange</a>
+            <a href="#">Verified Pools</a>
+          </div>
+          <div class="footer-col">
+            <h4>Developers</h4>
+            <a href="#">Developer Platform</a>
+            <a href="#">Base</a>
+            <a href="#">Server Wallets</a>
+            <a href="#">Embedded Wallets</a>
+            <a href="#">Base Accounts (Smart Wallets)</a>
+            <a href="#">Onramp &amp; Offramp</a>
+            <a href="#">x402</a>
+            <a href="#">Trade API</a>
+            <a href="#">Paymaster</a>
+            <a href="#">OnchainKit</a>
+            <a href="#">Data API</a>
+            <a href="#">Verifications</a>
+            <a href="#">Node</a>
+            <a href="#">AgentKit</a>
+            <a href="#">Staking</a>
+            <a href="#">Faucet</a>
+            <a href="#">Exchange API</a>
+            <a href="#">International Exchange API</a>
+            <a href="#">Prime API</a>
+            <a href="#">Derivatives API</a>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">Help center</a>
+            <a href="#">Contact us</a>
+            <a href="#">Create account</a>
+            <a href="#">ID verification</a>
+            <a href="#">Account information</a>
+            <a href="#">Payment methods</a>
+            <a href="#">Account access</a>
+            <a href="#">Supported crypto</a>
+            <a href="#">Status</a>
+            <h4 style="margin-top:24px;">Asset prices</h4>
+            <a href="#">Bitcoin price</a>
+            <a href="#">Ethereum price</a>
+            <a href="#">Solana price</a>
+            <a href="#">XRP price</a>
+            <h4 style="margin-top:24px;">Stock prices</h4>
+            <a href="#">NVIDIA price</a>
+            <a href="#">Apple price</a>
+            <a href="#">Microsoft price</a>
+            <a href="#">Amazon price</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-social">
+          <!-- X / Twitter -->
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <!-- TikTok -->
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // Carousel
+    (function() {
+      const track = document.getElementById('carouselTrack');
+      const dots = document.querySelectorAll('.carousel-dot');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+      const pauseBtn = document.getElementById('carouselPause');
+      let current = 0, paused = false, interval;
+      const total = 2;
+      function goTo(i) {
+        current = ((i % total) + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function(d, idx) { d.classList.toggle('active', idx === current); });
+      }
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+      function start() { interval = setInterval(next, 5000); }
+      function stop() { clearInterval(interval); }
+      prevBtn.addEventListener('click', function() { stop(); prev(); if (!paused) start(); });
+      nextBtn.addEventListener('click', function() { stop(); next(); if (!paused) start(); });
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() { stop(); goTo(parseInt(dot.dataset.slide)); if (!paused) start(); });
+      });
+      pauseBtn.addEventListener('click', function() {
+        paused = !paused;
+        if (paused) { stop(); pauseBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'; }
+        else { start(); pauseBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'; }
+      });
+      start();
+    })();
+
+    // Crypto card tabs
+    (function() {
+      var tabs = document.querySelectorAll('.crypto-card-tabs button');
+      var data = {
+        tradable: [
+          { name: 'Bitcoin', icon: 'btc', letter: 'B', price: '67,557.12', change: '0.84%' },
+          { name: 'Ethereum', icon: 'eth', letter: '', price: '1,985.30', change: '1.80%', isSvg: true },
+          { name: 'Tether', icon: 'usdt', letter: 'T', price: '1.00', change: '0.00%', isRed: true },
+          { name: 'BNB', icon: 'bnb', letter: 'B', price: '625.55', change: '1.44%' },
+          { name: 'XRP', icon: 'xrp', letter: 'X', price: '1.35', change: '0.53%' },
+          { name: 'USDC', icon: 'usdc', letter: '$', price: '1.00', change: '--' }
+        ],
+        gainers: [
+          { name: 'Solana', icon: 'btc', letter: 'S', price: '168.42', change: '8.42%' },
+          { name: 'Dogecoin', icon: 'bnb', letter: 'D', price: '0.18', change: '6.21%' },
+          { name: 'Cardano', icon: 'usdc', letter: 'A', price: '0.45', change: '5.87%' },
+          { name: 'Polkadot', icon: 'eth', letter: 'P', price: '6.85', change: '4.53%' },
+          { name: 'Avalanche', icon: 'xrp', letter: 'A', price: '28.10', change: '3.92%' },
+          { name: 'Chainlink', icon: 'usdt', letter: 'L', price: '15.45', change: '3.15%' }
+        ],
+        new: [
+          { name: 'Pepe', icon: 'usdt', letter: 'P', price: '0.000018', change: '12.5%' },
+          { name: 'Jupiter', icon: 'usdc', letter: 'J', price: '1.24', change: '5.3%' },
+          { name: 'Pyth', icon: 'eth', letter: 'P', price: '0.48', change: '2.1%' },
+          { name: 'Starknet', icon: 'btc', letter: 'S', price: '1.56', change: '3.8%' },
+          { name: 'Wormhole', icon: 'bnb', letter: 'W', price: '0.72', change: '1.9%' },
+          { name: 'Ethena', icon: 'xrp', letter: 'E', price: '1.05', change: '4.2%' }
+        ]
+      };
+      function render(key) {
+        var list = document.getElementById('cryptoList');
+        var items = data[key];
+        list.innerHTML = items.map(function(c) {
+          var iconContent = c.isSvg ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 1.5l-8 13.1L12 18.7l8-4.1L12 1.5zm0 18.9l-8-4.7L12 22.5l8-6.8-8 4.7z"/></svg>' : c.letter;
+          var changeClass = c.isRed ? 'cli-change red' : 'cli-change';
+          var changeContent = c.change === '--' ? '--' : '<span class="arrow">&#8599;</span> ' + c.change;
+          return '<div class="crypto-list-item"><div class="cli-left"><div class="cli-icon ' + c.icon + '">' + iconContent + '</div><span class="cli-name">' + c.name + '</span></div><div class="cli-right"><div class="cli-price">$' + c.price + '</div><div class="' + changeClass + '">' + changeContent + '</div></div></div>';
+        }).join('');
+      }
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+          render(tab.dataset.tab);
+        });
+      });
+    })();
+
+    // Candlestick chart
+    (function() {
+      var chart = document.getElementById('candleChart');
+      for (var i = 0; i < 30; i++) {
+        var isGreen = Math.random() > 0.45;
+        var bodyH = 8 + Math.random() * 40;
+        var wickH = 4 + Math.random() * 20;
+        var bottom = 10 + Math.random() * 60;
+        var c = document.createElement('div');
+        c.className = 'candle ' + (isGreen ? 'green' : 'red');
+        c.style.left = (i / 30 * 100) + '%';
+        c.style.bottom = bottom + 'px';
+        c.innerHTML = '<div class="wick" style="height:' + wickH + 'px"></div><div class="body" style="height:' + bodyH + 'px"></div><div class="wick" style="height:' + (wickH * 0.6) + 'px"></div>';
+        chart.appendChild(c);
+      }
+    })();
+  </script>
+</body>
+</html>
